@@ -1,4 +1,4 @@
-name: My Pipeline
+3name: My Pipeline
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
         - ubuntu-latest
         steps:
           - name: Docker checkout code
-            uses: actions/checkout@v4
+            uses: actions/checkout@v3
           - name: Docker login
             uses: docker/login-action@v3
             with:
