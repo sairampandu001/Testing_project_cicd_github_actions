@@ -11,7 +11,7 @@ jobs:
         - ubuntu-latest
         steps:
           - name: Docker login
-            uses: docker/login-action@v4.1.0
+            uses: docker/login-action@v3
             with:
               Username: ${{secrets.USERNAME_DOCKER}}
               Password: ${{secrets.PASSWORD_DOCKER}}
@@ -20,8 +20,9 @@ jobs:
             run: docker build -t sairampandu/life .
           - name: push Docker image
             run: docker push sairampandu/life
-          - name: Setup SSH for EC2
-            uses: omarhosny206/setup-ssh-for-ec2@v1.0.0
+          - name: Deploy to EC2
+            uses: appleboy/ssh-action@v1.0.0
+          
             with:
               EC2_SSH_PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
               EC2_URL: ${{secrets.EC2_URL}}
