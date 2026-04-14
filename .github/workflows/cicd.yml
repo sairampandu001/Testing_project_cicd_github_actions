@@ -1,4 +1,4 @@
-3name: My Pipeline
+name: My Pipeline
 
 on:
   push:
