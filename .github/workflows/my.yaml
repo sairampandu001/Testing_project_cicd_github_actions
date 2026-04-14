@@ -19,9 +19,9 @@ jobs:
               password: ${{ secrets.PASSWORD_DOCKER }}
               
           - name: Build Docker Image
-            run: docker build -t sairampandu/life .
+            run: docker build -t sairampandu/cicd .
           - name: push Docker image
-            run: docker push sairampandu/life
+            run: docker push sairampandu/cicd
           - name: Deploy to EC2
             uses: appleboy/ssh-action@v1.0.0
           
@@ -31,10 +31,10 @@ jobs:
               host: ${{ secrets.EC2_HOST }}
               
               script: |
-                docker pull sairampandu/life
+                docker pull sairampandu/cicd
                 docker stop app || true
                 docker rm app || true
-                docker run  -d -p 80:80 --name app sairampandu/life
+                docker run  -d -p 80:80 --name app sairampandu/cicd
               
     
     
